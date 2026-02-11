@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poster Oficial - El Limonar Ecohotel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <!-- Librería para generar el código QR -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        :root {
+            --verde-limon: #2B4C0B;
+            --verde-vibrante: #7CB342;
+            --amarillo-citrico: #F4FF81;
+            --crema: #FAFAF2;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #e5e7eb;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .poster-canvas {
+            width: 750px; 
+            height: 1050px;
+            background-color: var(--crema);
+            position: relative;
+            box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            border: 15px solid white;
+        }
+
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+
+        .hero-section {
+            height: 52%; 
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .qr-wrapper {
+            background: white;
+            padding: 20px;
+            border-radius: 24px;
+            box-shadow: 0 15px 40px rgba(43, 76, 11, 0.2);
+            display: inline-block;
+            border: 3px solid var(--verde-vibrante);
+            min-width: 200px;
+            min-height: 200px;
+        }
+
+        @media print {
+            body { background: white; padding: 0; }
+            .poster-canvas { box-shadow: none; border: none; width: 100%; height: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="poster-canvas">
+        <div class="hero-section">
+            <img src="https://lh3.googleusercontent.com/d/1lipKUZX1HcsfIlwrk4ZZjQG1XS-gfRMs" alt="Esencia El Limonar" class="hero-image">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20"></div>
+            
+            <div class="absolute top-12 left-0 right-0 flex justify-center text-center">
+                <img src="https://lh3.googleusercontent.com/d/1LNTkboFIGhJdPeAVw-08ffqZQP3cqIHm" alt="Logo El Limonar" class="w-64 drop-shadow-2xl">
+            </div>
+
+            <div class="absolute bottom-8 left-0 right-0 text-center text-center">
+                <p class="text-white text-lg italic font-bold tracking-widest drop-shadow-md text-center">
+                    "Donde el lujo se encuentra con lo natural"
+                </p>
+            </div>
+        </div>
+
+        <div class="flex-grow flex flex-col items-center justify-center px-16 text-center relative bg-white">
+            <div class="z-10 text-center">
+                <span class="text-verde-vibrante font-black tracking-[0.5em] uppercase text-xs mb-4 block text-center">Sinfonía de la Tierra</span>
+                <h1 class="text-5xl font-bold text-[#2B4C0B] leading-tight mb-2 text-center text-center">Bienvenido a Casa</h1>
+                <div class="w-20 h-1 bg-verde-vibrante mx-auto my-6 rounded-full text-center"></div>
+                
+                <p class="text-sm font-bold text-[#2B4C0B] uppercase tracking-[0.3em] mb-8 bg-[#F4FF81]/40 py-2.5 px-6 rounded-full inline-block text-center text-center">
+                    Escanea para reservar tu estancia
+                </p>
+
+                <div class="qr-wrapper mb-10 flex items-center justify-center text-center">
+                    <div id="qrcode"></div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-10 w-full text-[#2B4C0B] text-center">
+                    <div class="text-right border-r border-gray-100 pr-10 text-center">
+                        <span class="text-[9px] font-black uppercase tracking-widest opacity-50 block mb-1 text-center">Visítanos</span>
+                        <span class="font-bold text-sm text-center">Toluviejo, Sucre<br>Troncal del Caribe Ruta 9004</span>
+                    </div>
+                    <div class="text-left text-center">
+                        <span class="text-[9px] font-black uppercase tracking-widest opacity-50 block mb-1 text-center">Comunidad</span>
+                        <span class="font-bold text-sm text-center">@limonarecohotel</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-[#2B4C0B] py-6 text-center">
+            <p class="text-[9px] text-white font-black uppercase tracking-[0.6em] text-center">
+                EL LIMONAR ECOHOTEL • 2026 • COLOMBIA
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // URL Actualizada con el subdirectorio del repositorio
+        const GITHUB_URL = "https://ecolimonar.github.io/portal-el-limonar/";
+
+        function generateQR() {
+            const qrElement = document.getElementById("qrcode");
+            
+            if (typeof QRCode !== 'undefined') {
+                qrElement.innerHTML = ""; 
+                try {
+                    new QRCode(qrElement, {
+                        text: GITHUB_URL,
+                        width: 200, 
+                        height: 200,
+                        colorDark : "#2B4C0B",
+                        colorLight : "#ffffff",
+                        correctLevel : QRCode.CorrectLevel.M 
+                    });
+                } catch (e) {
+                    console.error("Error al generar el QR:", e);
+                }
+            } else {
+                setTimeout(generateQR, 300);
+            }
+        }
+
+        window.addEventListener('load', generateQR);
+    </script>
+</body>
+</html>
