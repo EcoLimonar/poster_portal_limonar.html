@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Poster Oficial - El Limonar Ecohotel</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
     <!-- Librería para generar el código QR -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <style>
@@ -18,12 +18,13 @@
 
         body {
             font-family: 'Montserrat', sans-serif;
-            background-color: #e5e7eb;
+            background-color: #f3f4f6;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             padding: 2rem;
+            margin: 0;
         }
 
         .poster-canvas {
@@ -50,17 +51,30 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: transform 0.5s ease;
         }
 
         .qr-wrapper {
             background: white;
             padding: 20px;
             border-radius: 24px;
-            box-shadow: 0 15px 40px rgba(43, 76, 11, 0.2);
+            box-shadow: 0 15px 40px rgba(43, 76, 11, 0.15);
             display: inline-block;
             border: 3px solid var(--verde-vibrante);
-            min-width: 200px;
-            min-height: 200px;
+            margin: 0 auto;
+        }
+
+        .social-icon {
+            width: 14px;
+            height: 14px;
+            fill: var(--verde-limon);
+            display: inline-block;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+
+        #qrcode img {
+            margin: 0 auto;
         }
 
         @media print {
@@ -72,57 +86,84 @@
 <body>
 
     <div class="poster-canvas">
+        <!-- Parte Superior: Imagen y Logo -->
         <div class="hero-section">
             <img src="https://lh3.googleusercontent.com/d/1lipKUZX1HcsfIlwrk4ZZjQG1XS-gfRMs" alt="Esencia El Limonar" class="hero-image">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20"></div>
             
             <div class="absolute top-12 left-0 right-0 flex justify-center text-center">
                 <img src="https://lh3.googleusercontent.com/d/1LNTkboFIGhJdPeAVw-08ffqZQP3cqIHm" alt="Logo El Limonar" class="w-64 drop-shadow-2xl">
             </div>
 
-            <div class="absolute bottom-8 left-0 right-0 text-center text-center">
-                <p class="text-white text-lg italic font-bold tracking-widest drop-shadow-md text-center">
+            <div class="absolute bottom-8 left-0 right-0 text-center">
+                <p class="text-white text-lg italic font-bold tracking-widest drop-shadow-md px-4">
                     "Donde el lujo se encuentra con lo natural"
                 </p>
             </div>
         </div>
 
+        <!-- Parte Media: Mensaje y QR -->
         <div class="flex-grow flex flex-col items-center justify-center px-16 text-center relative bg-white">
-            <div class="z-10 text-center">
-                <span class="text-verde-vibrante font-black tracking-[0.5em] uppercase text-xs mb-4 block text-center">Sinfonía de la Tierra</span>
-                <h1 class="text-5xl font-bold text-[#2B4C0B] leading-tight mb-2 text-center text-center">Bienvenido a Casa</h1>
-                <div class="w-20 h-1 bg-verde-vibrante mx-auto my-6 rounded-full text-center"></div>
+            <div class="z-10 w-full">
+                <span class="text-[#7CB342] font-black tracking-[0.5em] uppercase text-xs mb-4 block">Sinfonía de la Tierra</span>
+                <h1 class="text-5xl font-bold text-[#2B4C0B] leading-tight mb-2">Bienvenido a Casa</h1>
+                <div class="w-20 h-1 bg-[#7CB342] mx-auto my-6 rounded-full"></div>
                 
-                <p class="text-sm font-bold text-[#2B4C0B] uppercase tracking-[0.3em] mb-8 bg-[#F4FF81]/40 py-2.5 px-6 rounded-full inline-block text-center text-center">
+                <p class="text-sm font-bold text-[#2B4C0B] uppercase tracking-[0.3em] mb-8 bg-[#F4FF81]/40 py-2.5 px-6 rounded-full inline-block">
                     Escanea para reservar tu estancia
                 </p>
 
-                <div class="qr-wrapper mb-10 flex items-center justify-center text-center">
-                    <div id="qrcode"></div>
+                <!-- Contenedor QR -->
+                <div class="flex justify-center mb-10">
+                    <div class="qr-wrapper">
+                        <div id="qrcode"></div>
+                    </div>
                 </div>
 
-                <div class="grid grid-cols-2 gap-10 w-full text-[#2B4C0B] text-center">
-                    <div class="text-right border-r border-gray-100 pr-10 text-center">
-                        <span class="text-[9px] font-black uppercase tracking-widest opacity-50 block mb-1 text-center">Visítanos</span>
-                        <span class="font-bold text-sm text-center">Toluviejo, Sucre<br>Troncal del Caribe Ruta 9004</span>
+                <!-- Información de Contacto -->
+                <div class="grid grid-cols-2 gap-4 w-full text-[#2B4C0B]">
+                    <!-- Columna Izquierda: Ubicación -->
+                    <div class="text-right border-r border-gray-200 pr-10 flex flex-col justify-center space-y-2">
+                        <div>
+                            <span class="text-[9px] font-black uppercase tracking-widest opacity-60 block mb-0.5">Visítanos</span>
+                            <span class="font-bold text-[13px] block">Toluviejo, Sucre</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="font-bold text-[13px] block">Km 25 Vía Sincelejo Tolú</span>
+                            <span class="font-bold text-[13px] block mt-1">Carretera Troncal del Caribe</span>
+                        </div>
                     </div>
-                    <div class="text-left text-center">
-                        <span class="text-[9px] font-black uppercase tracking-widest opacity-50 block mb-1 text-center">Comunidad</span>
-                        <span class="font-bold text-sm text-center">@limonarecohotel</span>
+                    
+                    <!-- Columna Derecha: Comunidad -->
+                    <div class="text-left pl-10 flex flex-col justify-center space-y-2">
+                        <div>
+                            <span class="text-[9px] font-black uppercase tracking-widest opacity-60 block mb-0.5">Comunidad</span>
+                            <span class="font-bold text-[13px] block">@limonarecohotel</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="font-bold text-[13px] flex items-center">
+                                <svg class="social-icon" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.246 2.248 3.484 5.232 3.484 8.412-.003 6.557-5.338 11.892-11.893 11.892-1.942-.001-3.841-.487-5.538-1.413l-6.459 1.691zm6.205-3.61c1.551.921 3.324 1.408 5.132 1.408 5.454 0 9.892-4.438 9.895-9.893.002-2.643-1.029-5.127-2.9-7c-1.871-1.873-4.354-2.905-6.996-2.905-5.454 0-9.892 4.438-9.895 9.894-.001 1.905.548 3.762 1.587 5.34l-.999 3.644 3.738-.981zm11.233-7.55c-.3-.15-1.772-.875-2.047-.975-.276-.1-.476-.15-.676.15-.2.3-.775.975-.95 1.175-.175.2-.35.225-.65.075-.3-.15-1.265-.467-2.41-1.488-.891-.794-1.492-1.775-1.667-2.075-.175-.3-.019-.462.13-.611.134-.134.3-.35.45-.525.15-.175.2-.3.3-.5.1-.2.05-.375-.025-.525-.075-.15-.676-1.63-0.926-2.232-.243-.587-.49-.508-.676-.518-.175-.008-.375-.01-.575-.01-.2 0-.525.075-.8.375-.275.3-1.05 1.025-1.05 2.5s1.075 2.9 1.225 3.1c.15.2 2.115 3.23 5.125 4.53.716.31 1.275.498 1.71.638.72.23 1.374.197 1.891.12.576-.085 1.772-.725 2.022-1.425.25-.7.25-1.3.175-1.425-.075-.125-.275-.2-.575-.35z"/></svg>
+                                310 707 6066
+                            </span>
+                            <span class="font-bold text-[13px] flex items-center mt-1">
+                                <svg class="social-icon" viewBox="0 0 24 24"><path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/></svg>
+                                Limonar Eco Hotel
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
+        <!-- Footer Actualizado -->
         <div class="bg-[#2B4C0B] py-6 text-center">
-            <p class="text-[9px] text-white font-black uppercase tracking-[0.6em] text-center">
-                EL LIMONAR ECOHOTEL • 2026 • COLOMBIA
+            <p class="text-[9px] text-white font-black uppercase tracking-[0.4em]">
+                © 2026 EL LIMONAR ECOHOTEL • TODOS LOS DERECHOS RESERVADOS • COLOMBIA
             </p>
         </div>
     </div>
 
     <script>
-        // URL Actualizada con el subdirectorio del repositorio
         const GITHUB_URL = "https://ecolimonar.github.io/portal-el-limonar/";
 
         function generateQR() {
@@ -133,11 +174,11 @@
                 try {
                     new QRCode(qrElement, {
                         text: GITHUB_URL,
-                        width: 200, 
-                        height: 200,
+                        width: 180, 
+                        height: 180,
                         colorDark : "#2B4C0B",
                         colorLight : "#ffffff",
-                        correctLevel : QRCode.CorrectLevel.M 
+                        correctLevel : QRCode.CorrectLevel.H 
                     });
                 } catch (e) {
                     console.error("Error al generar el QR:", e);
